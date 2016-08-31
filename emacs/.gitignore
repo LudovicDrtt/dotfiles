@@ -1,0 +1,9 @@
+auto-save-list
+games
+session.*
+smex-items
+bookmarks
+ac-comphist.dat
+.last-package-update-day
+elpa/
+atom-one-dark-theme.el
