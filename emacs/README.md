@@ -1,7 +1,9 @@
 # Emacs
 
 ## Packages list
+- auctex
 - auto-complete
+- auto-complete-auctex
 - auto-complete-c-headers
 - auto-complete-clang
 - auto-package-update

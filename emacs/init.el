@@ -120,16 +120,8 @@
 (require 'auto-complete-c-headers)
 (add-to-list 'ac-sources 'ac-sources-c-headers)
 
-
-;;--------------------------------------------------
-;;
-;;    Yasnippet configuration
-;; 
-
-(require 'yasnippet)
-
-;; Set as global mode
-(yas-global-mode 1)
+;; Flyspell compatibility
+(ac-flyspell-workaround)
 
 
 ;;--------------------------------------------------
@@ -161,12 +153,46 @@
 
 ;;--------------------------------------------------
 ;;
+;;    flyspell mode configuration
+;;
+
+(require 'flyspell-correct-popup)
+(define-key flyspell-mode-map (kbd "C-;") 'flyspell-correct-previous-word-generic)
+
+
+;;--------------------------------------------------
+;;
 ;;    Latex mode configuration
 ;;
 
 ;; Start auto fill minor mode
 (add-hook 'latex-mode-hook 'turn-on-auto-fill)
 
+;; Start flyspell
+(add-hook 'latex-mode-hook 'flyspell-mode)
+
+;;--------------------------------------------------
+;;
+;;    Auctex mode configuration
+;;
+
+;; Start auto fill minor mode
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+
+;; Start flyspell
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
+;; Start auto-complete
+(require 'auto-complete-auctex)
+(add-hook 'LaTeX-mode-hook 'auto-complete-mode)
+
+;; Start latex-unicode-math-mode
+;(require 'latex-unicode-math-mode)
+;(add-hook 'LaTeX-mode-hook 'latex-unicode-math-mode)
+
+;; Enable parsing
+(setq TeX-parse-self t) ; Enable parse on load.
+(setq TeX-auto-save t) ; Enable parse on save.
 
 ;;--------------------------------------------------
 ;;
@@ -176,11 +202,19 @@
 ;; Start auto fill minor mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
+;; Start flyspell
+(add-hook 'org-mode-hook 'flyspell-mode)
+
+;; Add auto completion
+(add-to-list 'ac-modes 'org-mode)
+
 ;; Set maximum indentation for description lists
 (setq org-list-description-max-indent 5)
 
 ;; Prevent demoting heading also shifting text inside sections
 (setq org-adapt-indentation nil)
+
+(setq org-footnote-auto-adjust t)
 
 ;; Languages support by org-babel
 (org-babel-do-load-languages
@@ -193,19 +227,21 @@
 ;; Org latex class
 (require 'ox-latex)
 (add-to-list 'org-latex-classes
-             '("latex-article"
+             '("pkginclude-article"
                "\\documentclass{article}
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
 \\usepackage[francais]{babel}
 \\usepackage{graphicx}
+\\usepackage{wrapfig}
 \\usepackage{longtable}
 \\usepackage{hyperref}
-\\usepackage{natlib}
 \\usepackage{amssymb}
 \\usepackage{amsmath}
+\\usepackage{tikz, tkz-tab}
+\\usepackage[nottoc, notlof, notlot]{tocbibind}
 \\usepackage{geometry}
-\\geometry{a4paper, left=2.5cm, top=2cm, right=2.5cm, bottom=2cm, marginparsep=7pt, marginwidth=.6in}"
+\\geometry{a4paper, left=2.5cm, top=2cm, right=2.5cm, bottom=2cm, marginparsep=7pt}"
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -265,3 +301,25 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))")))
     (todo priority-down category-keep)
     (tags priority-down category-keep)
     (search category-keep))))
+
+
+
+;;--------------------------------------------------
+;;
+;;    Custon auto configurations
+;;
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ac-math latex-unicode-math-mode auctex auto-complete-auctex julia-mode gnuplot-mode seti-theme seq ppd-sr-speedbar pos-tip mc-extras math-symbol-lists markdown-mode let-alist jinja2-mode icomplete+ haskell-snippets haskell-mode flyspell-correct-popup elixir-mode cmake-mode auto-package-update auto-complete-clang auto-complete-c-headers))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
