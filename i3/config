@@ -231,6 +231,9 @@ exec_always compton -CG --vsync drm
 # NetworkManager applet
 exec_always nm-applet
 
+# Blueberry icon tray
+exec blueberry-tray
+
 # Audio applet
 #exec volwheel
 
@@ -278,3 +281,21 @@ mode $mode_keyboard {
 }
 
 bindsym $mod+Shift+Insert mode $mode_keyboard
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /home/ludovic/.config/i3/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec quodlibet --play-pause
+bindsym XF86AudioStop exec quodlibet --pause
+bindsym XF86AudioNext exec quodlibet --next
+bindsym XF86AudioPrev exec quodlibet --previous
