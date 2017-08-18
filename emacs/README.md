@@ -17,7 +17,7 @@
 - mc-extra
 - org
 - org-ac
-- seti-theme
+- atom-one-dark
 - sr-speedbar
 - yasnippet
 - elfeed
