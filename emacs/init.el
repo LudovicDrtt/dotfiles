@@ -5,6 +5,10 @@
 ;; Set the character encoding
 (set-language-environment "UTF-8")
 
+;; Pall apart custom configuration
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
 ;; Make indentation commands to space only (never tab character)
 (setq-default indent-tabs-mode nil)
 
@@ -61,12 +65,14 @@
 ;; Change the windows title to the name of the opened file
 (setq frame-title-format
       '(buffer-file-name
-	"%f"
+	"%f - Emacs"
 	(dired-directory dired-directory "%b")))
 
+;; Set font size
+(set-face-attribute 'default nil :height 105)
+
 ;; Load theme
-(require 'seti-theme)
-(load-theme 'seti t)
+(load-theme 'atom-one-dark t)
 
 
 ;;--------------------------------------------------
@@ -153,6 +159,22 @@
 
 ;;--------------------------------------------------
 ;;
+;;    Emms mode configuration
+;;
+
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+
+;; Set music directory
+(setq emms-source-file-default-directory "~/Musique/")
+
+;; Enable metadata
+(require 'emms-info-libtag)
+(setq emms-info-functions '(emms-info-libtag))
+
+;;--------------------------------------------------
+;;
 ;;    flyspell mode configuration
 ;;
 
@@ -193,6 +215,25 @@
 ;; Enable parsing
 (setq TeX-parse-self t) ; Enable parse on load.
 (setq TeX-auto-save t) ; Enable parse on save.
+
+
+;;--------------------------------------------------
+;;
+;;    Elfeed mode configuration
+;;
+
+;; Set global binding for elfeed
+(global-set-key (kbd "C-x w") 'elfeed)
+
+;; Set rss feeds via elfeed-org
+(require 'elfeed-org)
+(elfeed-org)
+
+;; Entries older than 2 weeks are marked as read
+(add-hook 'elfeed-new-entry-hook
+          (elfeed-make-tagger :before "2 weeks ago"
+                              :remove 'unread))
+
 
 ;;--------------------------------------------------
 ;;
@@ -301,25 +342,3 @@ DEADLINE: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))")))
     (todo priority-down category-keep)
     (tags priority-down category-keep)
     (search category-keep))))
-
-
-
-;;--------------------------------------------------
-;;
-;;    Custon auto configurations
-;;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ac-math latex-unicode-math-mode auctex auto-complete-auctex julia-mode gnuplot-mode seti-theme seq ppd-sr-speedbar pos-tip mc-extras math-symbol-lists markdown-mode let-alist jinja2-mode icomplete+ haskell-snippets haskell-mode flyspell-correct-popup elixir-mode cmake-mode auto-package-update auto-complete-clang auto-complete-c-headers))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
