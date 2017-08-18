@@ -20,3 +20,6 @@
 - seti-theme
 - sr-speedbar
 - yasnippet
+- elfeed
+- elfeed-org
+- emms
