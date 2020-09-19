@@ -35,8 +35,9 @@ bindsym $mod+Return exec xfce4-terminal
 # kill focused window
 bindsym $mod+Shift+B kill
 
-# start dmenu (a program launcher)
-bindsym $mod+i exec rofi -show run -config /home/ludovic/.config/i3/rofi.conf
+# start rofi (a program launcher)
+bindsym $mod+i exec rofi -show drun
+bindsym $mod+Tab exec rofi -show window
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -44,10 +45,10 @@ bindsym $mod+i exec rofi -show run -config /home/ludovic/.config/i3/rofi.conf
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+t focus left
-bindsym $mod+s focus down
-bindsym $mod+r focus up
-bindsym $mod+n focus right
+bindsym $mod+c focus left
+bindsym $mod+t focus down
+bindsym $mod+s focus up
+bindsym $mod+r focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left  focus left
@@ -56,10 +57,10 @@ bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+t move left
-bindsym $mod+Shift+s move down
-bindsym $mod+Shift+r move up
-bindsym $mod+Shift+n move right
+bindsym $mod+Shift+c move left
+bindsym $mod+Shift+t move down
+bindsym $mod+Shift+s move up
+bindsym $mod+Shift+r move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left  move left
@@ -68,10 +69,10 @@ bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+c split h
+bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+period split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+e fullscreen toggle
@@ -102,7 +103,7 @@ set $workspace5  "5"
 set $workspace6  "6"
 set $workspace7  "7"
 set $workspace8  "8"
-set $workspace9  "9 "
+set $workspace9  "9 "
 set $workspace10 "10 "
 
 # switch to workspace
@@ -140,7 +141,7 @@ workspace $workspace10 output DVI-D-1
 
 # Assign application to workspace
 assign [class="Firefox"]     $workspace1
-assign [class="Thunderbird"] $workspace9
+assign [class="KeePassXC"] $workspace9
 assign [class="Quodlibet"]   $workspace10
 
 # reload the configuration file
@@ -223,7 +224,7 @@ client.focused_inactive $inactive-bg-color $inactive-bg-color $text-color $indic
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color $indicator-color
 
 # Change wallpaper
-exec_always feh --bg-scale /home/ludovic/Images/backgrounds/chosen.jpg
+exec_always feh --bg-scale /home/ludovic/Images/backgrounds/Quasar.jpg
 
 # Start compositor
 exec_always compton -CG --vsync drm
@@ -241,11 +242,11 @@ exec blueberry-tray
 exec redshift -l 46.35:-0.37
 
 # Keybind for screen capture
-bindsym Print exec shutter -f
+#bindsym Print exec shutter -f
 
 # Autostart applications
 exec firefox
-exec thunderbird
+exec keepassxc
 exec quodlibet
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -289,8 +290,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/ludovic/.config/i3/toggletouchpad.sh # toggle touchpad
