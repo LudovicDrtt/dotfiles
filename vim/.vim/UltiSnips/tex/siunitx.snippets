@@ -1,0 +1,7 @@
+snippet "(^|[\W_])SS" "SI{}{}" rA
+`!p snip.rv = match.group(1)`\SI{${1:${VISUAL:}}}{$2}$0
+endsnippet
+
+snippet SIr "SIrange{}{}" i
+\SIrange{$1}{$2}{$3}$0
+endsnippet

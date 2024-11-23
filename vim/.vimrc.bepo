@@ -10,8 +10,8 @@ onoremap aÉ aW
 onoremap ié iw
 onoremap iÉ iW
 " Pour faciliter les manipulations de fenêtres, on utilise {W} comme un Ctrl+W :
-noremap w <C-w>
-noremap W <C-w><C-w>
+noremap é <C-w>
+noremap É <C-w><C-w>
  
 " [HJKL] -> {CTSR}
 " ————————————————
@@ -30,7 +30,7 @@ noremap S K
 " Corollaire : repli suivant / précédent
 noremap zs zj
 noremap zt zk
- 
+
 " {HJKL} <- [CTSR]
 " ————————————————
 " {J} = « Jusqu'à »            (j = suivant, J = précédant)
@@ -48,7 +48,7 @@ noremap K S
 " Corollaire : correction orthographique
 noremap ]k ]s
 noremap [k [s
- 
+
 " Désambiguation de {g}
 " —————————————————————
 " ligne écran précédente / suivante (à l'intérieur d'une phrase)
@@ -67,15 +67,16 @@ noremap g" g0
 " ————————————
 noremap « <
 noremap » >
+
  
 " Remaper la gestion des fenêtres
 " ———————————————————————————————
-noremap wt <C-w>j
-noremap ws <C-w>k
-noremap wc <C-w>h
-noremap wr <C-w>l
-noremap wd <C-w>c
-noremap wo <C-w>s
-noremap wp <C-w>o
-noremap w<SPACE> :split<CR>
-noremap w<CR> :vsplit<CR>
+noremap èt <C-w>j
+noremap ès <C-w>k
+noremap èc <C-w>h
+noremap èr <C-w>l
+noremap èd <C-w>c
+noremap èo <C-w>s
+noremap èp <C-w>o
+noremap è<SPACE> :split<CR>
+noremap è<CR> :vsplit<CR>

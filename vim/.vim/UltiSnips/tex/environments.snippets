@@ -1,0 +1,47 @@
+snippet beg "New environment" bA
+\begin{$1}
+	$0
+\end{$1}
+endsnippet
+
+snippet fig "Figure environment" bA
+\begin{figure}
+  \centering
+  \includegraphics[width=$2\textwidth]{$1}
+  \caption{$3}
+  \label{fig:$4}
+\end{figure}
+$0
+endsnippet
+
+# Snippet for inserting named links with href
+snippet hr "The hyperref package's \href{}{} command (for url links)"
+\href{${1:url}}{${2:display name}}$0
+endsnippet
+
+# Snippet for italic font
+snippet tii "The \textit{} command for italic font"
+\textit{${1:${VISUAL:}}}$0
+endsnippet
+
+snippet eeqn "Equation environment" bA
+\begin{equation}
+	$1
+\end{equation}
+$0
+endsnippet
+
+snippet ealg "Align environment" bA
+\begin{align}
+	$1
+\end{align}
+$0
+endsnippet
+
+snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
+`!p snip.rv = match.group(1)`\$${1:${VISUAL:}}\$$0
+endsnippet
+
+snippet SI "SI unitx" i
+\SI{${1:${VISUAL:}}}{$2}
+endsnippet
