@@ -2,6 +2,7 @@
 import os
 import tempfile
 import subprocess
+import re
 
 def open_editor(filename):
     return subprocess.run([
@@ -39,4 +40,6 @@ with open(f.name, 'r') as g:
 
 os.remove(f.name)
 
-copy(latex)
+empty_math = re.compile(r'\$\s*\$')
+if latex and (not empty_math.match(latex)):
+    copy(latex)
